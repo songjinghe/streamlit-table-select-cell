@@ -13,8 +13,7 @@ st.write(selectedCell)
 if selectedCell:
     rowId = selectedCell['rowId']
     colIndex = selectedCell['colIndex']
-    st.write(rowId, colIndex)
-    st.write(data.columns[colIndex], data.iloc[int(rowId)].to_dict())
-    st.write(data.iat[int(rowId), colIndex])
+    st.info('cell "{}" selected at row {} and col {} ({})'.format(data.iat[int(rowId), colIndex], rowId, colIndex, data.columns[colIndex]))
+    st.write('selected row data: ', data.iloc[int(rowId)].to_dict())
 else:
-    st.write('no select')
+    st.warning('no select')

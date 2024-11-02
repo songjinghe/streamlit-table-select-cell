@@ -16,27 +16,25 @@ interface State {
 
 function toTableOpts(table: ArrowTable){
   const columns = []
+  const data = []
   const colIndex2NameMap:{ [key: string]: string } = {}
-  for(let i=table.headerColumns; i<table.headerColumns+table.dataColumns; i++){
-    let txt = table.getCell(0, i).content
+  for(let col=table.headerColumns; col<table.headerColumns+table.dataColumns; col++){
+    let txt = table.getCell(0, col).content
     let headerName:string = txt? txt.toString() : ''
-    colIndex2NameMap[(i-table.headerColumns).toString()] = headerName
+    colIndex2NameMap[(col-table.headerColumns).toString()] = headerName
     columns.push({Header: headerName, accessor: headerName})
   }
-  console.debug('st_table_select_cell', colIndex2NameMap)
-  const rawTable = table.table
-  const data = []
-  for(let row of rawTable.toArray()){
+  for(let row=table.headerRows; row<table.rows; row++){
     const record:{ [key: string]: any } = {}
-    for(let cell of row){
-      // console.log(cell)
-      const columnId = cell[0]
-      const colName = colIndex2NameMap[columnId]
-      const content = cell[1]
-      record[colName] = content
+    for(let col=table.headerColumns; col<table.headerColumns+table.dataColumns; col++){
+      const cellTxt:string = (table.getCell(row, col).content || '').toString()
+      const headerName:string = (table.getCell(0, col).content || '').toString()
+      record[headerName] = cellTxt
+      // console.debug('[st_table_select_cell]', headerName, col, row, cellTxt)
     }
     data.push(record)
   }
+  // console.debug('[st_table_select_cell]', colIndex2NameMap)
   return {data, columns}
 }
 
