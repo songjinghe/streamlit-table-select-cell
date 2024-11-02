@@ -7,7 +7,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setuptools.setup(
     name="streamlit-table-select-cell",
-    version="0.3.3",
+    version="0.3.4",
     author="Jinghe Song",
     author_email="sjh.drizzle@foxmail.com",
     description="Streamlit component that allows you to select|click a cell in a table and get its rowId and columnIndex",
@@ -22,7 +22,7 @@ setuptools.setup(
         # By definition, a Custom Component depends on Streamlit.
         # If your component has other Python dependencies, list
         # them here.
-        "streamlit >= 0.63",
+        "streamlit >= 1.30.0",
     ],
     extras_require={
         "devel": [
