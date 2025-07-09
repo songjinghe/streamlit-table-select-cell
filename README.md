@@ -3,6 +3,9 @@
 Streamlit component that allows you to select|click a cell in a table and get its rowId and columnIndex.
 This is very useful when you want to dig into the detail of a cell in a pivoted dataframe.
 
+> YOU SHOULD FIRST TRY STREAMLIT'S ["Dataframe selections"](https://docs.streamlit.io/develop/api-reference/data/st.dataframe#dataframe-selections) which provide multi/single row/column selection.
+> thus you can select a cell by select a row and a column.
+
 ## Installation instructions
 
 ```sh
